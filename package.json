@@ -1,0 +1,20 @@
+{
+  "name": "ca_two_testing",
+  "version": "1.0.0",
+  "description": "MaazInformatics VFM Card Management System Proof of Concept",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saiffemalik/CA_TWO_Testing.git"
+  },
+  "keywords": [],
+  "author": "Saif Ur Rehman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saiffemalik/CA_TWO_Testing/issues"
+  },
+  "homepage": "https://github.com/saiffemalik/CA_TWO_Testing#readme"
+}
