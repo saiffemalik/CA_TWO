@@ -38,6 +38,14 @@ This project uses Node.js and npm to download and run packages. Here is a simple
 * **Default Constants:** Automatically initializes new cards with a standard grocery allowance of **€180.00** and **0** initial reward points, utilizing the `DEFAULT` attribute.
 * **Automated Seed Data:** Implements `INSERT INTO ... SELECT WHERE NOT EXISTS` clauses to securely inject foundation test data (including 'Saif Ur Rehman') upon initial environment activation, ensuring no duplicate entries occur.
 
+### Core Server Engine & Automation (`server.js`):
+* **Express Framework Integration:** Initializes the core HTTP backend application layer, enabling routing mechanisms and RESTful web service capabilities.
+* **Built-in Middleware Configuration:** Embeds `express.json()` to globally intercept incoming HTTP requests, safely formatting raw payloads into accessible JavaScript object notation.
+* **Asynchronous Database Initialization:** Implements an automated setup module (`setupDatabase`) that triggers concurrently upon server startup, completely eliminating manual deployment steps.
+* **File System (`fs`) Integration:** Utilizes native Node.js data streams to dynamically locate and read the root `database.sql` file across any standard execution environment.
+* **Query Splitting Engine:** Parses the database script into individual standalone commands using semantic boundaries (`;`), dynamically cleaning whitespaces to avoid script exceptions.
+* **Sequential Loop Execution:** Deploys a rigid execution sequence utilizing sequential loops and strict synchronization (`await db.query`), building tables safely before accepting external client requests.
+
 ### How to Install the Project
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
