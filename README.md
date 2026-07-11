@@ -31,6 +31,13 @@ This project uses Node.js and npm to download and run packages. Here is a simple
 * **Promise Wrapper:** Exports the connection using `.promise()`. This allows the application to use modern `async/await` syntax for asynchronous database queries, making the code cleaner and avoiding data mismatch.
 * **Environment Details:** Configured to connect to `localhost` using the default `root` user for the `maazinformatics_vfm` database.
 
+### Relational Database Schema (`database.sql`):
+* **Employees Table:** Stores basic staff profiles including auto-incremented primary keys (`id`), standard character fields (`name`, `department`), and a system-enforced unique constraint for email addresses (`email`).
+* **VFM Cards Table:** Stores the financial and reward card details. It links each card to an existing staff profile using a `FOREIGN KEY` reference pointing back to the `employees` table.
+* **Data Integrity (ON DELETE CASCADE):** Configured with cascading deletions. If an employee profile is removed from the system, their linked VFM card record is automatically purged to eliminate ghost data.
+* **Default Constants:** Automatically initializes new cards with a standard grocery allowance of **€180.00** and **0** initial reward points, utilizing the `DEFAULT` attribute.
+* **Automated Seed Data:** Implements `INSERT INTO ... SELECT WHERE NOT EXISTS` clauses to securely inject foundation test data (including 'Saif Ur Rehman') upon initial environment activation, ensuring no duplicate entries occur.
+
 ### How to Install the Project
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
