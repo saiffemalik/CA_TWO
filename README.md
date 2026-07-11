@@ -46,6 +46,15 @@ This project uses Node.js and npm to download and run packages. Here is a simple
 * **Query Splitting Engine:** Parses the database script into individual standalone commands using semantic boundaries (`;`), dynamically cleaning whitespaces to avoid script exceptions.
 * **Sequential Loop Execution:** Deploys a rigid execution sequence utilizing sequential loops and strict synchronization (`await db.query`), building tables safely before accepting external client requests.
 
+### Core Architecture - Modular MVC Folders:
+To maintain high maintainability and prevent code tangling, the system splits core business functions into decoupled layers:
+* **`controllers/` (Brain Logic Layer):**
+  * `employeeController.js`: Processes client inputs, performs request validation, communicates with the database pool, and handles operational constraints (e.g., duplicate entries) for employee lifecycle operations.
+  * `vfmCardController.js`: Manages standard company allowances, point allocations, and transactional balances for employee benefit accounts.
+* **`routes/` (URL Routing Layer):**
+  * `employeeRoutes.js`: Maps incoming client HTTP requests (such as POST creation streams) seamlessly into specific employee controller hooks.
+  * `vfmCardRoutes.js`: Establishes dedicated endpoint boundaries isolated for automated card management services.
+
 ### How to Install the Project
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
