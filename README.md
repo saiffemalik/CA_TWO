@@ -25,6 +25,12 @@ This project uses Node.js and npm to download and run packages. Here is a simple
 * `package-lock.json`: This file locks the exact version of every library installed, ensuring the app runs exactly the same way on the other computer as it does on mine.
 * `.gitignore`: This file tells Git to ignore and hide the heavy `node_modules` folder so we do not push huge downloaded files to GitHub.
 
+### Database Connection Setup (`config/db.js`):
+* **MySQL2 Driver:** Uses the `mysql2` package to establish a stable connection between the Node.js backend server and the database.
+* **Connection Pooling:** Instead of a single connection, it creates a pool of 10 connections. This handles multiple requests at the same time and prevents the server from crashing or hanging.
+* **Promise Wrapper:** Exports the connection using `.promise()`. This allows the application to use modern `async/await` syntax for asynchronous database queries, making the code cleaner and avoiding data mismatch.
+* **Environment Details:** Configured to connect to `localhost` using the default `root` user for the `maazinformatics_vfm` database.
+
 ### How to Install the Project
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
