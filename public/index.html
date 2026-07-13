@@ -152,7 +152,8 @@
             font-size: 0.95rem;
         }
 
-        table th, table td {
+        table th,
+        table td {
             padding: 12px 15px;
             border-bottom: 1px solid var(--border-color);
         }
@@ -176,6 +177,7 @@
             body {
                 padding: 10px;
             }
+
             header h1 {
                 font-size: 1.5rem;
             }
@@ -192,9 +194,11 @@
 
         <div class="grid">
             <div class="sidebar">
-                <div class="card-box">
-                    <h3>Register Employee</h3>
+                <div class="card-box" id="registerSection">
+                    <h3 id="formTitle">Register Employee</h3>
                     <form id="employeeForm">
+                        <input type="hidden" id="empId">
+
                         <div class="form-group">
                             <label>Full Name</label>
                             <input type="text" id="empName" placeholder="e.g. Saif Ur Rehman" required>
@@ -207,9 +211,14 @@
                             <label>Department</label>
                             <input type="text" id="empDept" placeholder="e.g. Software Development" required>
                         </div>
-                        <button type="submit">Save Employee</button>
+
+                        <button type="submit" id="submitBtn">Save Employee</button>
+                        <button type="button" id="cancelEditBtn"
+                            style="display: none; background-color: #c62828; color: white; width: 100%; border: none; padding: 12px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 10px;">Cancel
+                            Edit</button>
                     </form>
                 </div>
+
             </div>
 
             <div class="main-content">
@@ -222,6 +231,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Department</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -234,6 +244,6 @@
     <script src="app.js"></script>
 </body>
 
-  
+
 
 </html>
