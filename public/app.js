@@ -77,8 +77,9 @@ async function loadEmployees() {
         const employeesArray = result.data || result;
 
         employeesArray.forEach(emp => {
-            tbody.innerHTML += `
-                <tr>
+            const tr = document.createElement('tr');
+            
+            tr.innerHTML = `
                     <td><strong>${emp.id}</strong></td>
                     <td>${emp.name}</td>
                     <td>${emp.email}</td>
@@ -86,8 +87,29 @@ async function loadEmployees() {
                     <td>
                     <button class="edit-btn" data-id="${emp.id}" data-name="${emp.name}" data-email="${emp.email}" data-department="${emp.department}" style="background-color: #1e3a8a; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600;">Edit</button>
                     </td>
-                </tr>
             `;
+            tr.querySelector('.edit-btn').addEventListener('click', (e) => {
+                const btn = e.target;
+                
+                // Primary form text boxes population mechanism
+                document.getElementById('empId').value = btn.getAttribute('data-id');
+                document.getElementById('empName').value = btn.getAttribute('data-name');
+                document.getElementById('empEmail').value = btn.getAttribute('data-email');
+                document.getElementById('empDept').value = btn.getAttribute('data-department');
+                
+                // Form layout switch to update view context
+                if(formTitle) formTitle.textContent = 'Update Employee Profile';
+                if(submitBtn) {
+                    submitBtn.textContent = 'Confirm Update';
+                    submitBtn.style.backgroundColor = '#2e7d32'; // Green color for update mode
+                }
+                if(cancelEditBtn) cancelEditBtn.style.display = 'block';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            tbody.appendChild(tr);
+        
         });
     } catch (err) {
         console.error('Error rendering employees table:', err);
