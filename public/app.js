@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadEmployees();
 
     const employeeForm = document.getElementById('employeeForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const formTitle = document.getElementById('formTitle');
 
     // Handle Employee Submit 
     employeeForm.addEventListener('submit', async (e) => {
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Fetch and Render Data matching your exact current Backend API response
+// Fetch and Render Data 
 async function loadEmployees() {
     try {
         const res = await fetch('/api/employees');
