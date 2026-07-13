@@ -1,3 +1,14 @@
+/**
+ * Assignment Module: Server Entry Point & Database Automation
+ * Student Name: Saif Ur Rehman (Student Number: 20092818)
+ * NOTE ON ACADEMIC INTEGRITY & COLLABORATION:
+ * HTML code is originally written by me, Saif Ur Rehman, for the purpose of this assignment.
+ * CSS is written with the help of AI assistance, but the structure is my own.
+ * Link of that chatis mentions below:
+ * https://share.gemini.google/XQoDunwtVDwm
+ */
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +16,172 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaazInformatics VFM Dashboard</title>
+    <style>
+        /* Base Reset & Variables */
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Container Setup */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styling */
+        header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* Main Dashboard Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 350px 1fr;
+            }
+        }
+
+        /* Card Box Base */
+        .card-box {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+        }
+
+        .card-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Table Responsive Container */
+        .main-content {
+            overflow-x: auto;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
