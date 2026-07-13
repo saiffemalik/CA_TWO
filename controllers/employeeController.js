@@ -24,7 +24,7 @@ exports.createEmployee = async (req, res) => {
 
         // Send success response back to the client side
         res.status(201).json({
-            message: 'Employee profile created successfully! 🎉',
+            message: 'Employee profile created successfully! ',
             employeeId: newEmployeeId,
             data: { id: newEmployeeId, name, email, department }
         });
@@ -82,3 +82,48 @@ exports.getEmployeeById = async (req, res) => {
     }
 };
 
+// 4. Update Existing Employee Profile (Update Operation)
+exports.updateEmployee = async (req, res) => {
+    const { id } = req.params;
+    const { name, email, department } = req.body;
+
+    // Basic Validation: Ensure fields are not empty before firing SQL commands
+    if (!name || !email || !department) {
+        return res.status(400).json({ error: 'All fields (name, email, department) are required to execute updates.' });
+    }
+
+    try {
+        // Query to modify matching data attributes dynamically using specific placeholder variables
+        const updateQuery = 'UPDATE employees SET name = ?, email = ?, department = ? WHERE id = ?';
+        const [result] = await db.query(updateQuery, [name, email, department, id]);
+
+        // Check if rows Affected equals zero, meaning target employee profile ID does not exist
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: `Cannot update profile. Employee with ID ${id} not found.` });
+        }
+
+        // Send confirmation back to client interface viewport environment
+        res.status(200).json({
+            message: 'Employee profile updated successfully!',
+            data: { id, name, email, department }
+        });
+    } catch (error) {
+        // Handle unique constraint conflict if the user changes email to an active alternative address
+        if (error.code === 'ER_DUP_ENTRY') {
+            return res.status(400).json({ error: 'Another active employee is already utilizing this corporate email address.' });
+        }
+        console.error('Error updating employee payload records:', error.message);
+        res.status(500).json({ error: 'Internal Server Error instance fault encountered.', details: error.message });
+    }
+};
+
+// 5. Delete Employee Profile By ID (Delete Operation)
+exports.deleteEmployee = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await db.query('DELETE FROM employees WHERE id = ?', [id]);
+        res.json({ message: "Employee record deleted successfully!" });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to delete record." });
+    }
+};

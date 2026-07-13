@@ -45,10 +45,6 @@ async function setupDatabase() {
         console.error('Database initialization failed:', error.message);
     }
 }
-
-
-
-
 const PORT = 3000;
 app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);

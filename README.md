@@ -72,7 +72,6 @@ I have added controller code and two new routes to read and display employee dat
 
 Added a dynamic user interface inside the `public/` folder to connect my frontend with the backend APIs as an individual implementation.
 
-### What I Developed
 
 #### 1. `public/index.html` (The Web Page Structure)
 * **Simple Layout:** Separates the registration form from the employee data table.
