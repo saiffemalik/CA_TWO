@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaazInformatics VFM Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>MaazInformatics VFM Card Management System</h1>
+            <p>Employee Benefit Wallet & Control Panel</p>
+        </header>
+
+        <div class="grid">
+            <div class="sidebar">
+                <div class="card-box">
+                    <h3>Register Employee</h3>
+                    <form id="employeeForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="empName" placeholder="e.g. Saif Ur Rehman" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Corporate Email</label>
+                            <input type="email" id="empEmail" placeholder="saif@maazinformatics.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Department</label>
+                            <input type="text" id="empDept" placeholder="e.g. Software Development" required>
+                        </div>
+                        <button type="submit">Save Employee</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="card-box">
+                    <h3>Registered Employees</h3>
+                    <table id="employeeTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
