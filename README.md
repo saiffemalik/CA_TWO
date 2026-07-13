@@ -55,6 +55,19 @@ To maintain high maintainability and prevent code tangling, the system splits co
   * `employeeRoutes.js`: Maps incoming client HTTP requests (such as POST creation streams) seamlessly into specific employee controller hooks.
   * `vfmCardRoutes.js`: Establishes dedicated endpoint boundaries isolated for automated card management services.
 
+### View Employees Features :
+I have added controller code and two new routes to read and display employee data from the database:
+
+1. **View All Employees (Get All Profiles):**
+   * **URL:** `/api/employees`
+   * **Method:** `GET`
+   * **What it does:** This endpoint fetches the complete list of all employees saved in the database and shows them together (newly added employees will appear at the top).
+
+2. **View a Single Employee (Get Profile By ID):**
+   * **URL:** `/api/employees/:id` (Example: `/api/employees/1`)
+   * **Method:** `GET`
+   * **What it does:** This endpoint looks for one specific employee using their unique ID. If the ID exists in the database, it shows that employee's profile. If the ID does not exist, it returns a `404 Not Found` error.
+
 ### How to Install the Project
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
