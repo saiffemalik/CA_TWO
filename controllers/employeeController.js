@@ -37,3 +37,23 @@ exports.createEmployee = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 };
+
+// 2. Fetch All Employees Profiles (Read Operation)
+exports.getAllEmployees = async (req, res) => {
+    try {
+        // Query to get all records from employees table ordered by newest first
+        const selectQuery = 'SELECT * FROM employees ORDER BY id DESC';
+        const [rows] = await db.query(selectQuery);
+
+        // Send the list of employees back to the client side
+        res.status(200).json({
+            message: 'Employees fetched successfully! 📋',
+            count: rows.length,
+            data: rows
+        });
+    } catch (error) {
+        console.error('Error fetching employees:', error.message);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    }
+};
+
