@@ -68,6 +68,22 @@ I have added controller code and two new routes to read and display employee dat
    * **Method:** `GET`
    * **What it does:** This endpoint looks for one specific employee using their unique ID. If the ID exists in the database, it shows that employee's profile. If the ID does not exist, it returns a `404 Not Found` error.
 
+## Front-End Integration
+
+Added a dynamic user interface inside the `public/` folder to connect my frontend with the backend APIs as an individual implementation.
+
+### What I Developed
+
+#### 1. `public/index.html` (The Web Page Structure)
+* **Simple Layout:** Separates the registration form from the employee data table.
+* **Academic Integrity:** Added a note at the top stating that the CSS styling was generated with AI assistance, while the HTML structure is custom-built.
+* **Form & Table:** Includes a simple form to register new employees and a clean table to display them.
+
+#### 2. `public/app.js` (The Logic Script)
+* **Auto-Load Data:** Automatically fetches and shows existing database records as soon as the page loads.
+* **Form Submission (POST):** Stops the default page reload, takes data from the input fields, converts it to JSON, and sends it to the backend to create a new profile.
+* **Live Refresh (GET):** Fetches the updated database array and adds new rows to the HTML table dynamically without forcing a manual browser refresh.
+
 ### How to Install the Project
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
