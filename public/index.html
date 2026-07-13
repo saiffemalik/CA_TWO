@@ -219,6 +219,35 @@
                     </form>
                 </div>
 
+                <div class="card-box" id="vfmSection">
+                    <h3 id="vfmFormTitle">Issue VFM Card</h3>
+                    <form id="vfmForm">
+                        <input type="hidden" id="cardId">
+
+                        <div class="form-group">
+                            <label>Employee Database ID</label>
+                            <input type="number" id="employeeId" placeholder="e.g. 1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Card Number (16 Digits)</label>
+                            <input type="text" id="cardNumber" placeholder="1234567890123456" maxlength="16" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Grocery Balance (€)</label>
+                            <input type="number" id="groceryAllowance" step="0.01" value="180.00" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Reward Points</label>
+                            <input type="number" id="rewardPoints" value="0" required>
+                        </div>
+
+                        <button type="submit" id="vfmSubmitBtn">Issue Card</button>
+                        <button type="button" id="vfmCancelEditBtn"
+                            style="display: none; background-color: #c62828; color: white; width: 100%; border: none; padding: 12px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 10px;">Cancel
+                            Edit</button>
+                    </form>
+                </div>
+
             </div>
 
             <div class="main-content">
@@ -231,6 +260,22 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Department</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="card-box">
+                    <h3>Active VFM Corporate Cards</h3>
+                    <table id="vfmTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Employee</th>
+                                <th>Card Number</th>
+                                <th>Allowance</th>
+                                <th>Points</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
