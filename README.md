@@ -84,6 +84,22 @@ Added a dynamic user interface inside the `public/` folder to connect my fronten
 * **Form Submission (POST):** Stops the default page reload, takes data from the input fields, converts it to JSON, and sends it to the backend to create a new profile.
 * **Live Refresh (GET):** Fetches the updated database array and adds new rows to the HTML table dynamically without forcing a manual browser refresh.
 
+Key Features:
+Employee Registration: Easily add new employee records via a clean form interface.
+
+Real-time Data Fetching: Automatically updates and displays the employee list from the database.
+
+Dynamic Update System: Users can click the "Edit" button to populate the form, update details, and save changes using a single-card architecture.
+
+Responsive UI: A user-friendly design that handles both creation and modification smoothly.
+
+Technical Implementation:
+Frontend: JavaScript-based dynamic DOM manipulation to handle "Registration" and "Update" modes.
+
+Backend: RESTful API using Node.js/Express with robust POST and PUT route handlers to manage database transactions.
+
+Database: Automated SQL table initialization and data persistence.
+
 ### How to Install the Project
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
