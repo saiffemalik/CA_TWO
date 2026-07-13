@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submitBtn');
     const cancelEditBtn = document.getElementById('cancelEditBtn');
     const formTitle = document.getElementById('formTitle');
+    const tbody = document.getElementById('tbody');
 
     // Handle Employee Submit 
     employeeForm.addEventListener('submit', async (e) => {
@@ -86,8 +87,10 @@ async function loadEmployees() {
                     <td>${emp.department}</td>
                     <td>
                     <button class="edit-btn" data-id="${emp.id}" data-name="${emp.name}" data-email="${emp.email}" data-department="${emp.department}" style="background-color: #1e3a8a; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600;">Edit</button>
+                    <button class="delete-btn" data-id="${emp.id}" style="background-color: #c62828; color: white; border: none; padding: 6px 12px; margin-left: 5px; cursor: pointer;">Delete</button>
                     </td>
             `;
+            
             tr.querySelector('.edit-btn').addEventListener('click', (e) => {
                 const btn = e.target;
                 
@@ -107,6 +110,23 @@ async function loadEmployees() {
                 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            tr.querySelector('.delete-btn').addEventListener('click', async (e) => {
+                if (confirm('Are you sure you want to delete this employee?')) {
+                    const id = e.target.getAttribute('data-id');
+                    try {
+                        const response = await fetch(`/api/employees/${id}`, { method: 'DELETE' });
+                        if (response.ok) {
+                            loadEmployees(); // Yeh table ko refresh kar dega
+                        } else {
+                            alert('Failed to delete employee.');
+                        }
+                    } catch (err) {
+                        console.error('Delete error:', err);
+                    }
+                }
+            });
+
 
             tbody.appendChild(tr);
         
