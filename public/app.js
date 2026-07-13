@@ -35,3 +35,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Fetch and Render Data matching your exact current Backend API response
+async function loadEmployees() {
+    try {
+        const res = await fetch('/api/employees');
+        const result = await res.json();
+        
+        const tbody = document.querySelector('#employeeTable tbody');
+        tbody.innerHTML = '';
+
+        // Safely extract the array from your backend wrapper { data: [...] }
+        const employeesArray = result.data || result;
+
+        employeesArray.forEach(emp => {
+            tbody.innerHTML += `
+                <tr>
+                    <td><strong>${emp.id}</strong></td>
+                    <td>${emp.name}</td>
+                    <td>${emp.email}</td>
+                    <td>${emp.department}</td>
+                </tr>
+            `;
+        });
+    } catch (err) {
+        console.error('Error rendering employees table:', err);
+    }
+}
