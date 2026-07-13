@@ -10,15 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
     employeeForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const data = {
+       const data = {
             name: document.getElementById('empName').value,
             email: document.getElementById('empEmail').value,
             department: document.getElementById('empDept').value
         };
 
+        const empId = document.getElementById('empId')?.value; // Hidden id field state logic
+        const isUpdate = empId ? true : false;
+        const url = isUpdate ? `/api/employees/${empId}` : '/api/employees';
+        const method = isUpdate ? 'PUT' : 'POST';
+
         try {
-            const response = await fetch('/api/employees', {
-                method: 'POST',
+            const response = await fetch(url, {
+                method: method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
@@ -26,16 +31,36 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
 
             if (!response.ok) {
-                alert(result.error || 'Failed to save employee data');
+                alert(result.error || 'Failed to process employee data');
                 return;
             }
 
-            alert(result.message || 'Employee Profile Created!');
+            alert(result.message || (isUpdate ? 'Employee Profile Updated!' : 'Employee Profile Created!'));
+            
+            
             employeeForm.reset();
-            loadEmployees(); // Reload table dynamically
+            if(document.getElementById('empId')) document.getElementById('empId').value = '';
+            if(formTitle) formTitle.textContent = 'Register Employee';
+            if(submitBtn) {
+                submitBtn.textContent = 'Save Employee';
+                submitBtn.style.backgroundColor = '#1e3a8a';
+            }
+            if(cancelEditBtn) cancelEditBtn.style.display = 'none';
+
+            loadEmployees(); 
         } catch (error) {
-            alert('Network error while saving employee');
+            alert('Network error while processing request');
         }
+    });
+
+    // Cancel Button Trigger
+    document.getElementById('cancelEditBtn')?.addEventListener('click', () => {
+        employeeForm.reset();
+        if(document.getElementById('empId')) document.getElementById('empId').value = '';
+        formTitle.textContent = 'Register Employee';
+        submitBtn.textContent = 'Save Employee';
+        submitBtn.style.backgroundColor = '#1e3a8a';
+        cancelEditBtn.style.display = 'none';
     });
 });
 
@@ -58,6 +83,9 @@ async function loadEmployees() {
                     <td>${emp.name}</td>
                     <td>${emp.email}</td>
                     <td>${emp.department}</td>
+                    <td>
+                    <button class="edit-btn" data-id="${emp.id}" data-name="${emp.name}" data-email="${emp.email}" data-department="${emp.department}" style="background-color: #1e3a8a; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600;">Edit</button>
+                    </td>
                 </tr>
             `;
         });
