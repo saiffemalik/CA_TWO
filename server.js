@@ -3,7 +3,7 @@
  * Student Name: Saif Ur Rehman (Student Number: 20092818)
  * NOTE ON ACADEMIC INTEGRITY & COLLABORATION:
  * The logical architecture for the automated database file-reading, query splitting,
- * and synchronization pool loop was co-developed with peer assistance from a classmate/friend.
+ * and synchronization pool loop was co-developed with peer assistance from friend.
  */
 
 const express = require('express');
@@ -11,8 +11,17 @@ const fs = require('fs');
 const path = require('path');
 const db = require('./config/db');
 
+// Importing routes for employees and vfm cards
+const employeeRoutes = require('./routes/employeeRoutes');
+const vfmCardRoutes = require('./routes/vfmCardRoutes');
+
 const app = express();
 app.use(express.json()); // To handle JSON coming requests
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Registering routes to their specific API endpoints
+app.use('/api/employees', employeeRoutes);
+app.use('/api/cards', vfmCardRoutes);
 
 // Function to automatically setup database tables
 async function setupDatabase() {
@@ -37,10 +46,7 @@ async function setupDatabase() {
     }
 }
 
-// Testing for Basic default route 
-app.get('/', (req, res) => {
-    res.send('MaazInformatics VFM System Backend is Running!');
-});
+
 
 
 const PORT = 3000;
