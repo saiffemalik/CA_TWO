@@ -47,12 +47,37 @@ exports.getAllEmployees = async (req, res) => {
 
         // Send the list of employees back to the client side
         res.status(200).json({
-            message: 'Employees fetched successfully! 📋',
+            message: 'Employees fetched successfully! ',
             count: rows.length,
             data: rows
         });
     } catch (error) {
         console.error('Error fetching employees:', error.message);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    }
+};
+
+// 3. Fetch Single Employee Profile By ID (Read Operation)
+exports.getEmployeeById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Query to locate a specific employee matching the provided ID
+        const findQuery = 'SELECT * FROM employees WHERE id = ?';
+        const [rows] = await db.query(findQuery, [id]);
+
+        // Validation: If no matching record is returned from database
+        if (rows.length === 0) {
+            return res.status(404).json({ error: `Employee with ID ${id} not found.` });
+        }
+
+        // Send the found record back to the client side
+        res.status(200).json({
+            message: 'Employee record found!',
+            data: rows[0]
+        });
+    } catch (error) {
+        console.error('Error fetching employee by ID:', error.message);
         res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 };
