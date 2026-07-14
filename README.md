@@ -83,6 +83,75 @@ Added a dynamic user interface inside the `public/` folder to connect my fronten
 * **Form Submission (POST):** Stops the default page reload, takes data from the input fields, converts it to JSON, and sends it to the backend to create a new profile.
 * **Live Refresh (GET):** Fetches the updated database array and adds new rows to the HTML table dynamically without forcing a manual browser refresh.
 
+VFM Card Management Features :
+
+Alongside the Employee module, I have implemented a full set of controller functions and routes so that a VFM card can be issued, viewed, updated, and removed for any registered employee:
+
+
+Issue a New VFM Card (Create):
+
+URL: /api/cards
+Method: POST
+What it does: Creates a new card record linked to an existing employee_id. The employee provides their own unique 16-digit card_number at issuance time. If the required fields are missing, or the card number does not follow a 16-digit format, the request is rejected with a 400 Bad Request. If the card number already exists in the system, the database's UNIQUE constraint is caught and a friendly duplicate-entry error is returned instead of a raw SQL crash.
+
+
+
+View All VFM Cards (Get All Cards):
+
+URL: /api/cards
+Method: GET
+What it does: Fetches every issued card, joined together with the owning employee's name and department (via a SQL JOIN), ordered so the most recently issued card appears first.
+
+
+
+View a Single VFM Card (Get Card By ID):
+
+URL: /api/cards/:id (Example: /api/cards/1)
+Method: GET
+What it does: Looks up one specific card record, joined with its employee details. Returns a 404 Not Found if no card matches the supplied ID.
+
+
+
+Update an Existing VFM Card (Update):
+
+URL: /api/cards/:id
+Method: PUT
+What it does: Updates only the grocery_allowance and reward_points for a card. The linked employee and the card number itself are treated as fixed identity fields and are never changed through this endpoint. Returns a 404 Not Found if the card ID does not exist.
+
+
+
+Delete a VFM Card (Delete):
+
+URL: /api/cards/:id
+Method: DELETE
+What it does: Permanently removes a card record from the database. Returns a 404 Not Found if the target card does not exist.
+
+
+
+
+
+Front-End Integration
+
+Added a dynamic user interface inside the public/ folder to connect my frontend with the backend APIs as an individual implementation.
+
+1. public/index.html (The Web Page Structure)
+
+
+Simple Layout: Separates the registration form from the employee data table.
+Academic Integrity: Added a note at the top stating that the CSS styling was generated with AI assistance, while the HTML structure is custom-built.
+Form & Table: Includes a simple form to register new employees and a clean table to display them.
+VFM Card Section: A second card-box ("Issue VFM Card") sits alongside the employee form, containing an employeeDropdown select field so a card can only ever be issued to an existing employee, plus inputs for card number, grocery allowance, and reward points. A matching "Active VFM Corporate Cards" table displays all issued cards.
+
+
+2. public/app.js (The Logic Script)
+
+
+Auto-Load Data: Automatically fetches and shows existing database records as soon as the page loads both the employees table and the VFM cards table.
+Form Submission (POST): Stops the default page reload, takes data from the input fields, converts it to JSON, and sends it to the backend to create a new profile.
+Live Refresh (GET): Fetches the updated database array and adds new rows to the HTML table dynamically without forcing a manual browser refresh.
+Dynamic Employee Dropdown: The employeeDropdown on the VFM form is populated from the same /api/employees endpoint and is re-fetched automatically whenever a new employee is registered, so a newly added employee becomes available for card issuance without a page refresh.
+VFM Card Submission (POST/PUT): Reuses a single form for both issuing a new card and updating an existing one. When editing, the linked employee and card number fields are locked (disabled) since they represent the card's fixed identity, and only the grocery allowance and reward points remain editable.
+
 Key Features:
 Employee Registration: Easily add new employee records via a clean form interface.
 
