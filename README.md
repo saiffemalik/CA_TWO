@@ -13,11 +13,18 @@
 4. **I have read the College rules regarding academic integrity in the QAH Part B Section 3, and the Generative AI Guidelines, and understand that penalties will be applied accordingly if work is found not to be my own.**
 5. **I understand that all work submitted may be code-matched report to show any similarities with other work.**
 
+🌐 Live Demo
+
+Live URL:
+
+http://8.228.60.14
 
 ## 1. Project Introduction & Overview
 This project delivers a proof-of-concept Information System for **MaazInformatics** to manage its corporate employee benefits program. Within this organisation, each employee is issued a unique VFM card that functions similarly to a bank card. Through this card, employees receive a monthly grocery allowance and can earn performance-based reward points.
 
 The core practical focus of this implementation is to manage the **Employee and VFM Card records** via full **CRUD (Create, Read, Update, Delete) operations**, enforced by a decoupled REST API backend and a lightweight web frontend.
+
+
 
 ## 2. Project Setup & Setup Files
 This project uses Node.js and npm to download and run packages. Here is a simple explanation of the setup files in the project:
