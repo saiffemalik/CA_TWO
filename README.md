@@ -169,6 +169,12 @@ Backend: RESTful API using Node.js/Express with robust POST and PUT route handle
 Database: Automated SQL table initialization and data persistence.
 
 ### How to Install the Project
+Create A database at local server name "maazinformatics_vfm"
+
 When someone download this project, the `node_modules` folder will be missing. Open your terminal in the project folder and run this command to download all required packages automatically:
 
 npm install
+
+Once Project is Installed Run 
+
+npm start
