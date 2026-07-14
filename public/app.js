@@ -178,7 +178,7 @@ async function loadVfmCards() {
             document.getElementById('groceryAllowance').value = btn.getAttribute('data-allowance');
             document.getElementById('rewardPoints').value = btn.getAttribute('data-points');
 
-            // Employee & card number lock ho jayenge — sirf allowance/points editable
+            // Employee & card number are not editable
             document.getElementById('employeeDropdown').disabled = true;
             document.getElementById('cardNumber').disabled = true;
 
