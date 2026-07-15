@@ -1,3 +1,19 @@
+## Assignment Cover Sheet
+
+* Student Name: Saif Ur Rehman
+* Student Number: 20092818
+* Programme: MSc in Information Systems with Computing 
+* Lecturer Name: Paul Laird
+* Module/Subject Title: Programming for Information Systems (B9IS123)
+* Assignment Title: MaazInformatics VFM System - Employee Rewards & Monthly Grocery Allowance Card Management System
+
+**By submitting this assignment, I am confirming that:**
+1. **This assignment is all my own work;**
+2. **Any sources used have been referenced;**
+3. **I have followed the Generative AI instructions/ scale set out in the Assignment Brief (Level 4 - AI Task Completion, Human Evaluation);**
+4. **I have read the College rules regarding academic integrity in the QAH Part B Section 3, and the Generative AI Guidelines, and understand that penalties will be applied accordingly if work is found not to be my own.**
+5. **I understand that all work submitted may be code-matched report to show any similarities with other work.**
+
 ## Live Demo
 
 Live URL:
