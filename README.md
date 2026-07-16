@@ -32,6 +32,16 @@ This project delivers a proof-of-concept Information System for **MaazInformatic
 The core practical focus of this implementation is to manage the **Employee and VFM Card records** via full **CRUD (Create, Read, Update, Delete) operations**, enforced by a decoupled REST API backend and a lightweight web frontend.
 
 
+## Note for Commit History(Commits on 14 July, 2026 1:26 AM)"docs:feat:Fully Running Code"
+
+If we review commit history, there is a sudden push containing full code in once in key files `VfmController` , `VfmCardRoutes` and `app.js` on mentioned above time 
+
+`Why did this happen`
+* **Reason:** Because of countinuous workflow, micro-commits were not made for these file changes and when the project was fully running locally, the `git add .` commad was executed by me.
+* **Result:** This command staged all the progress at once. Consequently, all previous unpushed code in these files was pushed in a single commit snapshot, making it appear a massive amount of code was written instantly.
+
+I fully value and respect the guidelines, approaches, and instructions outlined in the module's assessment brief—including the best practices for version control. My intention was always to follow these instructions closely.
+As indicated by the prefix `docs:` and `feat:` in my commit message, my focus during that session was on documenting the repository and ensuring the final, complete project was successfully pushed to GitHub in a working state.
 
 ## 2. Project Setup & Setup Files
 
@@ -203,3 +213,12 @@ npm install
 Once Project is Installed Run 
 
 npm start
+
+
+## Resources
+
+Following are Resources used during developement of this project:
+
+* The logical architecture for the automated database file-reading, query splitting,and synchronization pool loop was co-developed with peer assistance from friend(Server.js).
+* AI assistance for CSS of index.html
+
